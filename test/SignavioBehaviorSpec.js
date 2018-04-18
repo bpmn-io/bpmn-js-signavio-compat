@@ -7,7 +7,7 @@ import {
 import signavioCompatModule from '../';
 import coreModule from 'bpmn-js/lib/core';
 
-import testDiagram from './SignavioBehavior.bpmn';
+import testDiagram from './SubProcess.collapsed.bpmn';
 
 
 describe('signavio-compat', function() {

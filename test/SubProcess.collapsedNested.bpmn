@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:signavio="http://www.signavio.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="Signavio Process Editor, http://www.signavio.com" exporterVersion="11.16.0" expressionLanguage="http://www.w3.org/TR/XPath" id="sid-2e96a387-4038-4292-8a22-8398d1ebf646" targetNamespace="http://www.signavio.com" typeLanguage="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+   <process id="sid-9fce2f7d-5dc4-4d13-bf0d-253d4bdab316" isClosed="false" isExecutable="false" processType="None">
+      <extensionElements>
+         <signavio:signavioDiagramMetaData metaKey="processowner" metaValue=""/>
+         <signavio:signavioDiagramMetaData metaKey="aktualisierungsgrnde" metaValue=""/>
+         <signavio:signavioDiagramMetaData metaKey="userstory" metaValue=""/>
+         <signavio:signavioDiagramMetaData metaKey="processmanager" metaValue=""/>
+         <signavio:signavioDiagramMetaData metaKey="revisionid" metaValue="1216e8bb2cb7449b8009fd3cf6d15928"/>
+      </extensionElements>
+      <subProcess completionQuantity="1" id="sid-BB7F0CCE-4ED9-497C-B816-59823104F213" isForCompensation="false" name="New process" startQuantity="1" triggeredByEvent="false">
+         <extensionElements>
+            <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
+            <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000"/>
+            <signavio:signavioMetaData metaKey="userstory" metaValue=""/>
+            <signavio:signavioDiagramMetaData metaKey="revisionid" metaValue="3b373fd614cd44af8358d7099ea294b9"/>
+         </extensionElements>
+         <subProcess completionQuantity="1" id="sid-10E0A2B2-95C8-4165-9948-0D0B18CC025A" isForCompensation="false" name="New process" startQuantity="1" triggeredByEvent="false">
+            <extensionElements>
+               <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
+               <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000"/>
+               <signavio:signavioMetaData metaKey="userstory" metaValue=""/>
+               <signavio:signavioDiagramMetaData metaKey="revisionid" metaValue="065c81bc2c0649c394e302dcc886482b"/>
+            </extensionElements>
+            <task completionQuantity="1" id="sid-456A007E-AA94-4114-BDA3-F98386156001" isForCompensation="false" startQuantity="1">
+               <extensionElements>
+                  <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
+                  <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000"/>
+                  <signavio:signavioMetaData metaKey="erteiltfreigabe" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="risiko" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="test" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="adaptereventtype" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="adapterclassname" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="documentationlink" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="servicereferenz" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="adaptertype" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="userstory" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="riskandcontrols" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="adapterconfiguration" metaValue=""/>
+               </extensionElements>
+            </task>
+            <task completionQuantity="1" id="sid-E5C409EE-D285-456A-BB28-C1ABB0132774" isForCompensation="false" startQuantity="1">
+               <extensionElements>
+                  <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
+                  <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000"/>
+                  <signavio:signavioMetaData metaKey="erteiltfreigabe" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="risiko" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="test" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="adaptereventtype" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="adapterclassname" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="documentationlink" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="servicereferenz" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="adaptertype" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="userstory" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="riskandcontrols" metaValue=""/>
+                  <signavio:signavioMetaData metaKey="adapterconfiguration" metaValue=""/>
+               </extensionElements>
+            </task>
+         </subProcess>
+      </subProcess>
+   </process>
+   <bpmndi:BPMNDiagram id="sid-de15f0fc-e0ae-4b49-8f49-e34c94d665a6">
+      <bpmndi:BPMNPlane bpmnElement="sid-9fce2f7d-5dc4-4d13-bf0d-253d4bdab316" id="sid-a531adf7-40c0-438c-818b-08938c823fde">
+         <bpmndi:BPMNShape bpmnElement="sid-BB7F0CCE-4ED9-497C-B816-59823104F213" id="sid-BB7F0CCE-4ED9-497C-B816-59823104F213_gui" isExpanded="false">
+            <omgdc:Bounds height="80.0" width="100.06999999999994" x="630.0" y="370.0"/>
+            <bpmndi:BPMNLabel labelStyle="sid-7b565ef1-d60f-4c0b-9a02-875395ec7025">
+               <omgdc:Bounds height="12.0" width="68.65714263916016" x="645.7414283752441" y="402.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+      </bpmndi:BPMNPlane>
+      <bpmndi:BPMNLabelStyle id="sid-7b565ef1-d60f-4c0b-9a02-875395ec7025">
+         <omgdc:Font isBold="false" isItalic="false" isStrikeThrough="false" isUnderline="false" name="Arial" size="12.0"/>
+      </bpmndi:BPMNLabelStyle>
+   </bpmndi:BPMNDiagram>
+   <bpmndi:BPMNDiagram id="sid-882387d5-3abf-4a81-b022-21a07c0a2ccb">
+      <bpmndi:BPMNPlane bpmnElement="sid-BB7F0CCE-4ED9-497C-B816-59823104F213" id="sid-1e350ee1-5e35-4d12-a2fe-65c3ad577b81">
+         <bpmndi:BPMNShape bpmnElement="sid-10E0A2B2-95C8-4165-9948-0D0B18CC025A" id="sid-10E0A2B2-95C8-4165-9948-0D0B18CC025A_gui" isExpanded="false">
+            <omgdc:Bounds height="80.0" width="100.06999999999994" x="50.0" y="50.0"/>
+            <bpmndi:BPMNLabel labelStyle="sid-e27490a3-aabe-4797-a272-67db16a5017e">
+               <omgdc:Bounds height="12.0" width="68.65714263916016" x="65.74142837524414" y="82.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+      </bpmndi:BPMNPlane>
+      <bpmndi:BPMNLabelStyle id="sid-e27490a3-aabe-4797-a272-67db16a5017e">
+         <omgdc:Font isBold="false" isItalic="false" isStrikeThrough="false" isUnderline="false" name="Arial" size="12.0"/>
+      </bpmndi:BPMNLabelStyle>
+   </bpmndi:BPMNDiagram>
+   <bpmndi:BPMNDiagram id="sid-a9650e31-1c11-4193-b82c-7e62457c60bc">
+      <bpmndi:BPMNPlane bpmnElement="sid-10E0A2B2-95C8-4165-9948-0D0B18CC025A" id="sid-690ba066-7a6d-4f2d-ba07-7050db3fc6f3">
+         <bpmndi:BPMNShape bpmnElement="sid-456A007E-AA94-4114-BDA3-F98386156001" id="sid-456A007E-AA94-4114-BDA3-F98386156001_gui">
+            <omgdc:Bounds height="80.0" width="100.0" x="50.0" y="50.0"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="sid-E5C409EE-D285-456A-BB28-C1ABB0132774" id="sid-E5C409EE-D285-456A-BB28-C1ABB0132774_gui">
+            <omgdc:Bounds height="80.0" width="100.0" x="170.0" y="50.0"/>
+         </bpmndi:BPMNShape>
+      </bpmndi:BPMNPlane>
+   </bpmndi:BPMNDiagram>
+</definitions>
