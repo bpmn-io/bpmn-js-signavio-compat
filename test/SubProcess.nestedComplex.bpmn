@@ -71,11 +71,11 @@
                </extensionElements>
             </sequenceFlow>
          </subProcess>
-         <boundaryEvent attachedToRef="SubProcess_Nested" cancelActivity="true" id="sid-71DA1E38-464B-42E7-8BF3-44900884ACB5" parallelMultiple="false">
+         <boundaryEvent attachedToRef="SubProcess_Nested" cancelActivity="true" id="BoundaryEvent_2" parallelMultiple="false">
             <outgoing>sid-B00D2E86-35D4-45B4-9EEE-7B51B4B58516</outgoing>
             <messageEventDefinition id="sid-fc08c72e-190a-4449-9d41-21791497181d"/>
          </boundaryEvent>
-         <sequenceFlow id="sid-B00D2E86-35D4-45B4-9EEE-7B51B4B58516" sourceRef="sid-71DA1E38-464B-42E7-8BF3-44900884ACB5" targetRef="SubProcess_Nested">
+         <sequenceFlow id="sid-B00D2E86-35D4-45B4-9EEE-7B51B4B58516" sourceRef="BoundaryEvent_2" targetRef="SubProcess_Nested">
             <extensionElements>
                <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000"/>
                <signavio:signavioMetaData metaKey="userstory" metaValue=""/>
@@ -119,7 +119,7 @@
                <omgdc:Bounds height="24.0" width="84.0857162475586" x="285.89690343003224" y="231.98828125"/>
             </bpmndi:BPMNLabel>
          </bpmndi:BPMNShape>
-         <bpmndi:BPMNShape bpmnElement="sid-71DA1E38-464B-42E7-8BF3-44900884ACB5" id="sid-71DA1E38-464B-42E7-8BF3-44900884ACB5_gui">
+         <bpmndi:BPMNShape bpmnElement="BoundaryEvent_2" id="BoundaryEvent_2_gui">
             <omgdc:Bounds height="30.0" width="30.0" x="345.1741225345878" y="271.4948977199821"/>
          </bpmndi:BPMNShape>
          <bpmndi:BPMNEdge bpmnElement="sid-B00D2E86-35D4-45B4-9EEE-7B51B4B58516" id="sid-B00D2E86-35D4-45B4-9EEE-7B51B4B58516_gui">
