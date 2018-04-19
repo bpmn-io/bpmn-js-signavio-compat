@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:signavio="http://www.signavio.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="Signavio Process Editor, http://www.signavio.com" exporterVersion="11.16.0" expressionLanguage="http://www.w3.org/TR/XPath" id="sid-bbfbed13-8687-42d4-8f7d-46e3ac61643c" targetNamespace="http://www.signavio.com" typeLanguage="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+   <process id="sid-630fb1c8-5e99-422f-9fb3-f3997ad0b212" isClosed="false" isExecutable="false" processType="None">
+      <extensionElements>
+         <signavio:signavioDiagramMetaData metaKey="processowner" metaValue=""/>
+         <signavio:signavioDiagramMetaData metaKey="aktualisierungsgrnde" metaValue=""/>
+         <signavio:signavioDiagramMetaData metaKey="userstory" metaValue=""/>
+         <signavio:signavioDiagramMetaData metaKey="processmanager" metaValue=""/>
+         <signavio:signavioDiagramMetaData metaKey="revisionid" metaValue="ec2cbe4319784351a122778faa519683"/>
+      </extensionElements>
+      <subProcess completionQuantity="1" id="SubProcess" isForCompensation="false" name="SubProcess_1" startQuantity="1" triggeredByEvent="false">
+         <extensionElements>
+            <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
+            <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000"/>
+            <signavio:signavioMetaData metaKey="userstory" metaValue=""/>
+            <signavio:signavioDiagramMetaData metaKey="revisionid" metaValue="4ce2b487352b418d9bea388a801da2f1"/>
+         </extensionElements>
+         <task completionQuantity="1" id="Task_1" isForCompensation="false" name="Task_1" startQuantity="1">
+            <extensionElements>
+               <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
+               <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000"/>
+               <signavio:signavioMetaData metaKey="erteiltfreigabe" metaValue=""/>
+               <signavio:signavioMetaData metaKey="risiko" metaValue=""/>
+               <signavio:signavioMetaData metaKey="test" metaValue=""/>
+               <signavio:signavioMetaData metaKey="adaptereventtype" metaValue=""/>
+               <signavio:signavioMetaData metaKey="adapterclassname" metaValue=""/>
+               <signavio:signavioMetaData metaKey="documentationlink" metaValue=""/>
+               <signavio:signavioMetaData metaKey="servicereferenz" metaValue=""/>
+               <signavio:signavioMetaData metaKey="adaptertype" metaValue=""/>
+               <signavio:signavioMetaData metaKey="userstory" metaValue=""/>
+               <signavio:signavioMetaData metaKey="riskandcontrols" metaValue=""/>
+               <signavio:signavioMetaData metaKey="adapterconfiguration" metaValue=""/>
+            </extensionElements>
+            <outgoing>SequenceFlow_1</outgoing>
+         </task>
+         <boundaryEvent attachedToRef="Task_1" cancelActivity="true" id="BoundaryEvent" parallelMultiple="false">
+            <outgoing>SequenceFlow_2</outgoing>
+            <timerEventDefinition id="sid-3dd30a33-d79a-490c-b791-c6f657d0ea82"/>
+         </boundaryEvent>
+         <task completionQuantity="1" id="Task_2" isForCompensation="false" name="Task_2" startQuantity="1">
+            <extensionElements>
+               <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
+               <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000"/>
+               <signavio:signavioMetaData metaKey="erteiltfreigabe" metaValue=""/>
+               <signavio:signavioMetaData metaKey="risiko" metaValue=""/>
+               <signavio:signavioMetaData metaKey="test" metaValue=""/>
+               <signavio:signavioMetaData metaKey="adaptereventtype" metaValue=""/>
+               <signavio:signavioMetaData metaKey="adapterclassname" metaValue=""/>
+               <signavio:signavioMetaData metaKey="documentationlink" metaValue=""/>
+               <signavio:signavioMetaData metaKey="servicereferenz" metaValue=""/>
+               <signavio:signavioMetaData metaKey="adaptertype" metaValue=""/>
+               <signavio:signavioMetaData metaKey="userstory" metaValue="[]"/>
+               <signavio:signavioMetaData metaKey="riskandcontrols" metaValue=""/>
+               <signavio:signavioMetaData metaKey="adapterconfiguration" metaValue=""/>
+            </extensionElements>
+            <incoming>SequenceFlow_1</incoming>
+            <incoming>SequenceFlow_2</incoming>
+         </task>
+         <boundaryEvent attachedToRef="Task_2" cancelActivity="true" id="sid-71DA1E38-464B-42E7-8BF3-44900884ACB5" parallelMultiple="false">
+            <messageEventDefinition id="sid-1f0a29f6-6714-4daf-a908-89a14a6e91b7"/>
+         </boundaryEvent>
+         <sequenceFlow id="SequenceFlow_1" sourceRef="Task_1" targetRef="Task_2">
+            <extensionElements>
+               <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000"/>
+               <signavio:signavioMetaData metaKey="userstory" metaValue=""/>
+            </extensionElements>
+         </sequenceFlow>
+         <sequenceFlow id="SequenceFlow_2" sourceRef="BoundaryEvent" targetRef="Task_2">
+            <extensionElements>
+               <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000"/>
+               <signavio:signavioMetaData metaKey="userstory" metaValue=""/>
+            </extensionElements>
+         </sequenceFlow>
+      </subProcess>
+   </process>
+   <bpmndi:BPMNDiagram id="sid-6d3b7673-f203-4950-8e3d-206345bd237b">
+      <bpmndi:BPMNPlane bpmnElement="sid-630fb1c8-5e99-422f-9fb3-f3997ad0b212" id="sid-1cf81f07-320e-4b34-a311-eddf8f1c2060">
+         <bpmndi:BPMNShape bpmnElement="SubProcess" id="SubProcess_gui" isExpanded="false">
+            <omgdc:Bounds height="80.0" width="100.06999999999994" x="814.965" y="541.5"/>
+            <bpmndi:BPMNLabel labelStyle="sid-0042b03c-dfe0-49a5-872e-feeda80306d6">
+               <omgdc:Bounds height="12.0" width="77.14286041259766" x="826.4635694885254" y="573.5"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+      </bpmndi:BPMNPlane>
+      <bpmndi:BPMNLabelStyle id="sid-0042b03c-dfe0-49a5-872e-feeda80306d6">
+         <omgdc:Font isBold="false" isItalic="false" isStrikeThrough="false" isUnderline="false" name="Arial" size="12.0"/>
+      </bpmndi:BPMNLabelStyle>
+   </bpmndi:BPMNDiagram>
+   <bpmndi:BPMNDiagram id="sid-997976d4-7c81-4f74-b4fb-c67a20ba87ee">
+      <bpmndi:BPMNPlane bpmnElement="SubProcess" id="sid-c67a185d-16b0-4358-81e5-fa66db423322">
+         <bpmndi:BPMNShape bpmnElement="Task_1" id="Task_1_gui">
+            <omgdc:Bounds height="80.0" width="100.0" x="50.0" y="50.0"/>
+            <bpmndi:BPMNLabel labelStyle="sid-69edd10f-db87-4c70-9480-e022f3fc8d5c">
+               <omgdc:Bounds height="12.0" width="39.342857360839844" x="80.32857131958008" y="82.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="BoundaryEvent" id="BoundaryEvent_gui">
+            <omgdc:Bounds height="30.0" width="30.0" x="100.54696736055882" y="115.42211513745303"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="Task_2" id="Task_2_gui">
+            <omgdc:Bounds height="80.0" width="100.0" x="230.0" y="50.0"/>
+            <bpmndi:BPMNLabel labelStyle="sid-69edd10f-db87-4c70-9480-e022f3fc8d5c">
+               <omgdc:Bounds height="12.0" width="39.342857360839844" x="260.3285713195801" y="82.0"/>
+            </bpmndi:BPMNLabel>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNShape bpmnElement="sid-71DA1E38-464B-42E7-8BF3-44900884ACB5" id="sid-71DA1E38-464B-42E7-8BF3-44900884ACB5_gui">
+            <omgdc:Bounds height="30.0" width="30.0" x="605.0" y="360.0"/>
+         </bpmndi:BPMNShape>
+         <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1" id="SequenceFlow_1_gui">
+            <omgdi:waypoint x="150.0" y="90.0"/>
+            <omgdi:waypoint x="230.0" y="90.0"/>
+         </bpmndi:BPMNEdge>
+         <bpmndi:BPMNEdge bpmnElement="SequenceFlow_2" id="SequenceFlow_2_gui">
+            <omgdi:waypoint x="115.54696736055882" y="145.42211513745303"/>
+            <omgdi:waypoint x="115.54696736055882" y="197.0"/>
+            <omgdi:waypoint x="280.0" y="197.0"/>
+            <omgdi:waypoint x="280.0" y="130.0"/>
+         </bpmndi:BPMNEdge>
+      </bpmndi:BPMNPlane>
+      <bpmndi:BPMNLabelStyle id="sid-69edd10f-db87-4c70-9480-e022f3fc8d5c">
+         <omgdc:Font isBold="false" isItalic="false" isStrikeThrough="false" isUnderline="false" name="Arial" size="12.0"/>
+      </bpmndi:BPMNLabelStyle>
+   </bpmndi:BPMNDiagram>
+</definitions>
