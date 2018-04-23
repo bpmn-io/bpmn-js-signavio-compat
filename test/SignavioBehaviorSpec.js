@@ -86,10 +86,13 @@ describe('signavio-compat', function() {
     }));
 
 
-    it('should redo', inject(function(commandStack) {
+    it('should redo', inject(function(commandStack, elementRegistry) {
 
       // given
       expand('SubProcess_1');
+
+      var task1 = elementRegistry.get('Task_1'),
+          subProcessNested = elementRegistry.get('SubProcess_Nested');
 
       // when
       commandStack.undo();
@@ -102,6 +105,9 @@ describe('signavio-compat', function() {
 
       expectElementImported('SequenceFlow_1', 'SubProcess_1', 'Process_1');
       expectElementImported('SequenceFlow_2', 'SubProcess_1', 'Process_1');
+
+      expect(elementRegistry.get('Task_1')).to.equal(task1);
+      expect(elementRegistry.get('SubProcess_Nested')).to.equal(subProcessNested);
     }));
 
 
@@ -322,6 +328,69 @@ describe('signavio-compat', function() {
 
       // then
       expectElementRemoved('StartEvent_1', 'Process_1', existingDi);
+    }));
+
+  });
+
+
+  describe('complex', function() {
+
+    beforeEach(bootstrapTest(collapsedDiagram, {
+      keyboard: {
+        bindTo: document
+      }
+    }));
+
+
+    beforeEach(bootstrapTest(collapsedDiagram));
+
+
+    it('should expand/collapse nested', inject(function(signavioBehavior) {
+
+      // when
+      expand('SubProcess_1');
+
+      // then
+      expectElementImported('Task_1', 'SubProcess_1', 'Process_1');
+      expectElementImported('SubProcess_Nested', 'SubProcess_1', 'Process_1');
+      expectElementImported('BoundaryEvent_1', 'SubProcess_1', 'Process_1');
+
+      expectElementImported('SequenceFlow_1', 'SubProcess_1', 'Process_1');
+      expectElementImported('SequenceFlow_2', 'SubProcess_1', 'Process_1');
+
+      // when
+      expand('SubProcess_Nested');
+
+      // then
+      expectElementImported('Task_Nested', 'SubProcess_Nested', 'Process_1');
+      expectElementImported('BoundaryEvent_Nested', 'SubProcess_Nested', 'Process_1');
+
+      // when
+      collapse('SubProcess_1');
+
+      // then
+      expectElementRemoved('Task_1', 'Process_1', 'SubProcess_1');
+      expectElementRemoved('SubProcess_Nested', 'Process_1', 'SubProcess_1');
+      expectElementRemoved('BoundaryEvent_1', 'Process_1', 'SubProcess_1');
+
+      expectElementRemoved('SequenceFlow_1', 'Process_1', 'SubProcess_1');
+      expectElementRemoved('SequenceFlow_2', 'Process_1', 'SubProcess_1');
+
+      expectElementRemoved('Task_Nested', 'SubProcess_Nested', 'Process_1');
+      expectElementRemoved('BoundaryEvent_Nested', 'SubProcess_Nested', 'Process_1');
+
+      // when
+      expand('SubProcess_1');
+
+      expectElementImported('Task_1', 'SubProcess_1', 'Process_1');
+      expectElementImported('SubProcess_Nested', 'SubProcess_1', 'Process_1');
+      expectElementImported('BoundaryEvent_1', 'SubProcess_1', 'Process_1');
+
+      expectElementImported('SequenceFlow_1', 'SubProcess_1', 'Process_1');
+      expectElementImported('SequenceFlow_2', 'SubProcess_1', 'Process_1');
+
+      expectElementImported('Task_Nested', 'SubProcess_Nested', 'Process_1');
+      expectElementImported('BoundaryEvent_Nested', 'SubProcess_Nested', 'Process_1');
     }));
 
   });
