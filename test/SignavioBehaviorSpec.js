@@ -5,7 +5,10 @@ import {
   insertCSS
 } from 'bpmn-js/test/helper';
 
-import { find } from 'min-dash';
+import {
+  find,
+  isString
+} from 'min-dash';
 
 insertCSS('diagram-js.css', require('diagram-js/assets/diagram-js.css'));
 
@@ -42,75 +45,62 @@ describe('signavio-compat', function() {
 
   describe('expanding', function() {
 
-    var sourceDiagram, targetDiagram;
-
     beforeEach(bootstrapModeler(collapsedDiagram, {
       additionalModules: [
         signavioCompatModule
-      ],
-      keyboard: {
-        bindTo: document
-      }
-    }));
-
-    beforeEach(inject(function(bpmnReplace, elementRegistry) {
-
-      // given
-      var collapsedSubProcess = elementRegistry.get('SubProcess_1');
-
-      // when
-      bpmnReplace.replaceElement(collapsedSubProcess,
-        {
-          type: 'bpmn:SubProcess',
-          isExpanded: true
-        }
-      );
-
-      sourceDiagram = findDiagram('SubProcess_1');
-      targetDiagram = findDiagram('Process_1');
+      ]
     }));
 
 
     it('should do', function() {
 
-      // then
-      expectElementImported('Task_1', sourceDiagram, targetDiagram);
-      expectElementImported('SubProcess_Nested', sourceDiagram, targetDiagram);
-      expectElementImported('BoundaryEvent_1', sourceDiagram, targetDiagram);
+      // given
+      expand('SubProcess_1');
 
-      expectElementImported('SequenceFlow_1', sourceDiagram, targetDiagram);
-      expectElementImported('SequenceFlow_2', sourceDiagram, targetDiagram);
+      // then
+      expectElementImported('Task_1', 'SubProcess_1', 'Process_1');
+      expectElementImported('SubProcess_Nested', 'SubProcess_1', 'Process_1');
+      expectElementImported('BoundaryEvent_1', 'SubProcess_1', 'Process_1');
+
+      expectElementImported('SequenceFlow_1', 'SubProcess_1', 'Process_1');
+      expectElementImported('SequenceFlow_2', 'SubProcess_1', 'Process_1');
     });
 
 
     it('should undo', inject(function(commandStack) {
 
+      // given
+      expand('SubProcess_1');
+
       // when
       commandStack.undo();
 
       // then
-      expectElementRemoved('Task_1', targetDiagram, sourceDiagram);
-      expectElementRemoved('SubProcess_Nested', targetDiagram, sourceDiagram);
-      expectElementRemoved('BoundaryEvent_1', targetDiagram, sourceDiagram);
+      expectElementRemoved('Task_1', 'Process_1', 'SubProcess_1');
+      expectElementRemoved('SubProcess_Nested', 'Process_1', 'SubProcess_1');
+      expectElementRemoved('BoundaryEvent_1', 'Process_1', 'SubProcess_1');
 
-      expectElementRemoved('SequenceFlow_1', targetDiagram, sourceDiagram);
-      expectElementRemoved('SequenceFlow_2', targetDiagram, sourceDiagram);
+      expectElementRemoved('SequenceFlow_1', 'Process_1', 'SubProcess_1');
+      expectElementRemoved('SequenceFlow_2', 'Process_1', 'SubProcess_1');
     }));
 
 
     it('should redo', inject(function(commandStack) {
+
+      // given
+      expand('SubProcess_1');
 
       // when
       commandStack.undo();
       commandStack.redo();
 
       // then
-      expectElementImported('Task_1', sourceDiagram, targetDiagram);
-      expectElementImported('SubProcess_Nested', sourceDiagram, targetDiagram);
-      expectElementImported('BoundaryEvent_1', sourceDiagram, targetDiagram);
+      expectElementImported('Task_1', 'SubProcess_1', 'Process_1');
+      expectElementImported('SubProcess_Nested', 'SubProcess_1', 'Process_1');
+      expectElementImported('BoundaryEvent_1', 'SubProcess_1', 'Process_1');
 
-      expectElementImported('SequenceFlow_1', sourceDiagram, targetDiagram);
-      expectElementImported('SequenceFlow_2', sourceDiagram, targetDiagram);
+      expectElementImported('SequenceFlow_1', 'SubProcess_1', 'Process_1');
+      expectElementImported('SequenceFlow_2', 'SubProcess_1', 'Process_1');
     }));
 
 
@@ -134,50 +124,31 @@ describe('signavio-compat', function() {
 
   describe('collapsing', function() {
 
-    var sourceDiagram;
-
     beforeEach(bootstrapModeler(expandedDiagram, {
       additionalModules: [
         signavioCompatModule
-      ],
-      keyboard: {
-        bindTo: document
-      }
-    }));
-
-    beforeEach(inject(function(bpmnReplace, elementRegistry) {
-
-      // given
-      var collapsedSubProcess = elementRegistry.get('SubProcess_1');
-
-      // when
-      bpmnReplace.replaceElement(collapsedSubProcess,
-        {
-          type: 'bpmn:SubProcess',
-          isExpanded: false
-        }
-      );
-
-      sourceDiagram = findDiagram('Process_1');
+      ]
     }));
 
 
     it('should do', function() {
 
+      // when
+      collapse('SubProcess_1');
+
       // then
-      var targetDiagram = findDiagram('SubProcess_1');
-
-      expect(targetDiagram).to.exist;
-
-      expectElementRemoved('StartEvent_1', sourceDiagram, targetDiagram);
-      expectElementRemoved('SequenceFlow_1', sourceDiagram, targetDiagram);
-      expectElementRemoved('Task_1', sourceDiagram, targetDiagram);
-      expectElementRemoved('SequenceFlow_2', sourceDiagram, targetDiagram);
-      expectElementRemoved('EndEvent_1', sourceDiagram, targetDiagram);
+      expectElementRemoved('StartEvent_1', 'Process_1', 'SubProcess_1');
+      expectElementRemoved('SequenceFlow_1', 'Process_1', 'SubProcess_1');
+      expectElementRemoved('Task_1', 'Process_1', 'SubProcess_1');
+      expectElementRemoved('SequenceFlow_2', 'Process_1', 'SubProcess_1');
+      expectElementRemoved('EndEvent_1', 'Process_1', 'SubProcess_1');
     });
 
 
     it('should undo', inject(function(commandStack) {
+
+      // given
+      collapse('SubProcess_1');
 
       // when
       commandStack.undo();
@@ -185,36 +156,35 @@ describe('signavio-compat', function() {
       // then
       var targetDiagram = findDiagram('SubProcess_1');
 
-      expect(targetDiagram).to.not.exist;
+      expect(targetDiagram).not.to.exist;
 
-      expectElementImported('StartEvent_1', sourceDiagram);
-      expectElementImported('SequenceFlow_1', sourceDiagram);
-      expectElementImported('Task_1', sourceDiagram);
-      expectElementImported('SequenceFlow_2', sourceDiagram);
-      expectElementImported('EndEvent_1', sourceDiagram);
+      expectElementImported('StartEvent_1', 'Process_1');
+      expectElementImported('SequenceFlow_1', 'Process_1');
+      expectElementImported('Task_1', 'Process_1');
+      expectElementImported('SequenceFlow_2', 'Process_1');
+      expectElementImported('EndEvent_1', 'Process_1');
     }));
 
 
     it('should redo', inject(function(commandStack) {
+
+      // given
+      collapse('SubProcess_1');
 
       // when
       commandStack.undo();
       commandStack.redo();
 
       // then
-      var targetDiagram = findDiagram('SubProcess_1');
-
-      expect(targetDiagram).to.exist;
-
-      expectElementRemoved('StartEvent_1', sourceDiagram, targetDiagram);
-      expectElementRemoved('SequenceFlow_1', sourceDiagram, targetDiagram);
-      expectElementRemoved('Task_1', sourceDiagram, targetDiagram);
-      expectElementRemoved('SequenceFlow_2', sourceDiagram, targetDiagram);
-      expectElementRemoved('EndEvent_1', sourceDiagram, targetDiagram);
+      expectElementRemoved('StartEvent_1', 'Process_1', 'SubProcess_1');
+      expectElementRemoved('SequenceFlow_1', 'Process_1', 'SubProcess_1');
+      expectElementRemoved('Task_1', 'Process_1', 'SubProcess_1');
+      expectElementRemoved('SequenceFlow_2', 'Process_1', 'SubProcess_1');
+      expectElementRemoved('EndEvent_1', 'Process_1', 'SubProcess_1');
     }));
 
 
-    it('should reuse exsting bpmndi:BPMNDiagram of subprocess');
+    it('reuse exsting bpmndi:BPMNDiagram');
 
   });
 
@@ -230,13 +200,26 @@ function findDI(diagram, id) {
 }
 
 function expectElementImported(id, sourceDiagram, targetDiagram) {
+
+  if (isString(sourceDiagram)) {
+    sourceDiagram = findDiagram(sourceDiagram);
+
+    expect(sourceDiagram).to.exist;
+  }
+
+  if (isString(targetDiagram)) {
+    targetDiagram = findDiagram(targetDiagram);
+
+    expect(targetDiagram).to.exist;
+  }
+
   return getBpmnJS().invoke(function(bpmnjs, elementRegistry) {
     var element = elementRegistry.get(id);
 
     expect(element).to.exist;
 
     if (targetDiagram) {
-      expect(findDI(sourceDiagram, id)).to.not.exist;
+      expect(findDI(sourceDiagram, id)).not.to.exist;
       expect(findDI(targetDiagram, id)).to.exist;
 
       expect(getBusinessObject(element).di).to.equal(findDI(targetDiagram, id));
@@ -253,12 +236,25 @@ function expectElementImported(id, sourceDiagram, targetDiagram) {
 }
 
 function expectElementRemoved(id, sourceDiagram, targetDiagram) {
+
+  if (isString(sourceDiagram)) {
+    sourceDiagram = findDiagram(sourceDiagram);
+
+    expect(sourceDiagram).to.exist;
+  }
+
+  if (isString(targetDiagram)) {
+    targetDiagram = findDiagram(targetDiagram);
+
+    expect(targetDiagram).to.exist;
+  }
+
   return getBpmnJS().invoke(function(bpmnjs, elementRegistry) {
     var element = elementRegistry.get(id);
 
-    expect(element).to.not.exist;
+    expect(element).not.to.exist;
 
-    expect(findDI(sourceDiagram, id)).to.not.exist;
+    expect(findDI(sourceDiagram, id)).not.to.exist;
     expect(findDI(targetDiagram, id)).to.exist;
   });
 }
@@ -272,4 +268,31 @@ function findDiagram(id) {
       return diagram.plane.bpmnElement.id === id;
     });
   });
+}
+
+function expand(id) {
+  return toggleCollapse(id, true);
+}
+
+function collapse(id) {
+  return toggleCollapse(id, false);
+}
+
+function toggleCollapse(id, isExpanded) {
+
+  return getBpmnJS().invoke(function(elementRegistry, bpmnReplace) {
+
+    var subProcess = elementRegistry.get(id);
+
+    expect(subProcess).to.exist;
+
+    // when
+    return bpmnReplace.replaceElement(subProcess,
+      {
+        type: 'bpmn:SubProcess',
+        isExpanded
+      }
+    );
+  });
+
 }
