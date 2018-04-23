@@ -7,7 +7,8 @@ import {
 
 import {
   find,
-  isString
+  isString,
+  assign
 } from 'min-dash';
 
 insertCSS('diagram-js.css', require('diagram-js/assets/diagram-js.css'));
@@ -27,10 +28,7 @@ describe('signavio-compat', function() {
 
   describe('basic', function() {
 
-    beforeEach(bootstrapModeler(collapsedDiagram, {
-      additionalModules: [
-        signavioCompatModule
-      ],
+    beforeEach(bootstrapTest(collapsedDiagram, {
       keyboard: {
         bindTo: document
       }
@@ -46,11 +44,7 @@ describe('signavio-compat', function() {
 
   describe('expanding', function() {
 
-    beforeEach(bootstrapModeler(collapsedDiagram, {
-      additionalModules: [
-        signavioCompatModule
-      ]
-    }));
+    beforeEach(bootstrapTest(collapsedDiagram));
 
 
     it('should do', function() {
@@ -105,18 +99,31 @@ describe('signavio-compat', function() {
     }));
 
 
-    it('should keep existing bpmndi:BPMNDiagram of subprocess');
+    it('should keep existing bpmndi:BPMNDiagram', function() {
+
+      // given
+      var diagramDi = findDiagram('SubProcess_1');
+
+      // assume
+      expect(diagramDi).to.exist;
+
+      // when
+      expand('SubProcess_1');
+
+      // then
+      expect(findDiagram('SubProcess_1')).to.equal(diagramDi);
+    });
 
 
     describe('error handling', function() {
 
-      it('should handle broken semantics');
+      it('broken semantics');
 
 
-      it('should handle missing semantics');
+      it('missing semantics');
 
 
-      it('should handle broken DI');
+      it('broken DI');
 
     });
 
@@ -125,11 +132,7 @@ describe('signavio-compat', function() {
 
   describe('collapsing', function() {
 
-    beforeEach(bootstrapModeler(expandedDiagram, {
-      additionalModules: [
-        signavioCompatModule
-      ]
-    }));
+    beforeEach(bootstrapTest(expandedDiagram));
 
 
     it('should do', function() {
@@ -189,11 +192,7 @@ describe('signavio-compat', function() {
 
   describe('collapse / existing bpmndi:BPMNDiagram', function() {
 
-    beforeEach(bootstrapModeler(expandedExistingDiagram, {
-      additionalModules: [
-        signavioCompatModule
-      ]
-    }));
+    beforeEach(bootstrapTest(expandedExistingDiagram));
 
 
     it('should do', inject(function(bpmnjs) {
@@ -217,6 +216,17 @@ describe('signavio-compat', function() {
 
 
 // helpers //////////
+
+function bootstrapTest(diagram, additionalOptions) {
+
+  return bootstrapModeler(diagram, assign({
+    additionalModules: [
+      signavioCompatModule
+    ]
+  }, additionalOptions));
+
+}
+
 
 function findDI(diagram, id) {
   return find(diagram.plane.planeElement, function(planeElement) {
