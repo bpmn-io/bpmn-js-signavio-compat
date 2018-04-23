@@ -8,7 +8,10 @@ import {
 import {
   find,
   isString,
-  assign
+  assign,
+  keys,
+  omit,
+  pick
 } from 'min-dash';
 
 insertCSS('diagram-js.css', require('diagram-js/assets/diagram-js.css'));
@@ -22,6 +25,10 @@ import { getBusinessObject } from 'bpmn-js/lib/util/ModelUtil';
 import collapsedDiagram from './SubProcess.nestedComplex.collapsed.bpmn';
 import expandedDiagram from './SubProcess.expanded.bpmn';
 import expandedExistingDiagram from './SubProcess.expandedExistingDiagram.bpmn';
+
+import collapsedBrokenSemanticsDiagram from './SubProcess.collapsed.brokenSemantics.bpmn';
+import collapsedMissingSemanticsDiagram from './SubProcess.collapsed.missingSemantics.bpmn';
+import collapsedBrokenDiDiagram from './SubProcess.collapsed.brokenDi.bpmn';
 
 
 describe('signavio-compat', function() {
@@ -45,7 +52,6 @@ describe('signavio-compat', function() {
   describe('expanding', function() {
 
     beforeEach(bootstrapTest(collapsedDiagram));
-
 
     it('should do', function() {
 
@@ -115,15 +121,123 @@ describe('signavio-compat', function() {
     });
 
 
-    describe('error handling', function() {
+    it('should emit import events', inject(function(eventBus) {
 
-      it('broken semantics');
+      // given
+      var capturedEvents = [];
+
+      eventBus.on([
+        'signavio.import.render.start',
+        'signavio.import.render.complete',
+        'signavio.import.done'
+      ], function(event) {
+        var eventKeys = keys(omit(event, [ 'type' ]));
+
+        capturedEvents.push(eventKeys);
+      });
+
+      // when
+      expand('SubProcess_1');
+
+      // then
+      expect(capturedEvents).to.eql([
+        [ 'subProcess' ],
+        [ 'error', 'subProcess', 'warnings' ],
+        [ 'error', 'subProcess', 'warnings' ]
+      ]);
+
+    }));
+
+  });
 
 
-      it('missing semantics');
+  describe('expand / error handling', function() {
+
+    describe('broken semantics', function() {
+
+      beforeEach(bootstrapTest(collapsedBrokenSemanticsDiagram));
 
 
-      it('broken DI');
+      it('should import', inject(function(eventBus) {
+
+        // given
+        let importResults;
+
+        eventBus.on('signavio.import.done', function(event) {
+          importResults = pick(event, [ 'error', 'warnings' ]);
+        });
+
+        // when
+        expand('SubProcess_1');
+
+        // then
+        expect(importResults.error).not.to.exist;
+
+        expectWarnings(importResults, [
+          /#source Ref not specified/
+        ]);
+      }));
+
+    });
+
+
+    describe('missing semantics', function() {
+
+      beforeEach(bootstrapTest(collapsedMissingSemanticsDiagram));
+
+
+      it('should import', inject(function(eventBus) {
+
+        // given
+        let importResults;
+
+        eventBus.on('signavio.import.done', function(event) {
+          importResults = pick(event, [ 'error', 'warnings' ]);
+        });
+
+        // when
+        expand('SubProcess_1');
+
+        // then
+        expect(importResults.error).not.to.exist;
+
+        expectWarnings(importResults, [
+          /no bpmnElement referenced in /,
+          /#target Ref not specified/
+        ]);
+      }));
+
+    });
+
+
+    describe('broken DI', function() {
+
+      beforeEach(bootstrapTest(collapsedBrokenDiDiagram));
+
+
+      it('should import', inject(function(eventBus) {
+
+        // given
+        let importResults;
+
+        eventBus.on('signavio.import.done', function(event) {
+          importResults = pick(event, [ 'error', 'warnings' ]);
+        });
+
+        // when
+        expand('SubProcess_1');
+
+        // then
+        expect(importResults.error).not.to.exist;
+
+        expectWarnings(importResults, [
+          // "Cannot read property 'x' of undefined"
+          // bounds is undefined
+          // undefined is not an object (evaluating 'bounds.x')
+          /undefined/,
+          /element .* id="EndEvent" .* referenced by .* not yet drawn/
+        ]);
+      }));
 
     });
 
@@ -328,6 +442,19 @@ function toggleCollapse(id, isExpanded) {
         isExpanded
       }
     );
+  });
+
+}
+
+
+function expectWarnings(importResults, expectedWarnings) {
+
+  var warnings = importResults.warnings;
+
+  expect(warnings).to.have.length(expectedWarnings.length, 'expected ' + expectedWarnings.length + ' warnings');
+
+  warnings.forEach(function(warning, idx) {
+    expect(warning.message).to.match(expectedWarnings[idx]);
   });
 
 }
