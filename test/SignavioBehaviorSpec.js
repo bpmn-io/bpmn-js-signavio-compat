@@ -20,6 +20,7 @@ import { getBusinessObject } from 'bpmn-js/lib/util/ModelUtil';
 
 import collapsedDiagram from './SubProcess.nestedComplex.collapsed.bpmn';
 import expandedDiagram from './SubProcess.expanded.bpmn';
+import expandedExistingDiagram from './SubProcess.expandedExistingDiagram.bpmn';
 
 
 describe('signavio-compat', function() {
@@ -183,8 +184,32 @@ describe('signavio-compat', function() {
       expectElementRemoved('EndEvent_1', 'Process_1', 'SubProcess_1');
     }));
 
+  });
 
-    it('reuse exsting bpmndi:BPMNDiagram');
+
+  describe('collapse / existing bpmndi:BPMNDiagram', function() {
+
+    beforeEach(bootstrapModeler(expandedExistingDiagram, {
+      additionalModules: [
+        signavioCompatModule
+      ]
+    }));
+
+
+    it('should do', inject(function(bpmnjs) {
+
+      // given
+      var existingDi = findDiagram('SubProcess_1');
+
+      // assume
+      expect(existingDi).to.exist;
+
+      // when
+      collapse('SubProcess_1');
+
+      // then
+      expectElementRemoved('StartEvent_1', 'Process_1', existingDi);
+    }));
 
   });
 
