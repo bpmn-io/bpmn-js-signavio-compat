@@ -32,7 +32,7 @@
             </extensionElements>
          </task>
          <boundaryEvent attachedToRef="Task_1" cancelActivity="true" id="BoundaryEvent_1" parallelMultiple="false">
-            <outgoing>sid-30649195-FA3E-46D8-A3E5-2B14F49D06A5</outgoing>
+            <outgoing>SequenceFlow_2</outgoing>
             <timerEventDefinition id="sid-bd786bb4-64d9-4f38-aee8-8f9e0ae3e9a3"/>
          </boundaryEvent>
          <subProcess completionQuantity="1" id="SubProcess_Nested" isForCompensation="false" name="SubProcess_Nested" startQuantity="1" triggeredByEvent="false">
@@ -42,8 +42,8 @@
                <signavio:signavioMetaData metaKey="userstory" metaValue=""/>
                <signavio:signavioDiagramMetaData metaKey="revisionid" metaValue="d93b1d6c61ec41d587484aa9fd188fdf"/>
             </extensionElements>
-            <incoming>sid-B00D2E86-35D4-45B4-9EEE-7B51B4B58516</incoming>
-            <incoming>sid-30649195-FA3E-46D8-A3E5-2B14F49D06A5</incoming>
+            <incoming>SequenceFlow_1</incoming>
+            <incoming>SequenceFlow_2</incoming>
             <task completionQuantity="1" id="Task_Nested" isForCompensation="false" name="Task_Nested" startQuantity="1">
                <extensionElements>
                   <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc"/>
@@ -66,16 +66,16 @@
             </boundaryEvent>
          </subProcess>
          <boundaryEvent attachedToRef="SubProcess_Nested" cancelActivity="true" id="BoundaryEvent_2" parallelMultiple="false">
-            <outgoing>sid-B00D2E86-35D4-45B4-9EEE-7B51B4B58516</outgoing>
+            <outgoing>SequenceFlow_1</outgoing>
             <messageEventDefinition id="sid-fc08c72e-190a-4449-9d41-21791497181d"/>
          </boundaryEvent>
-         <sequenceFlow id="sid-B00D2E86-35D4-45B4-9EEE-7B51B4B58516" sourceRef="BoundaryEvent_2" targetRef="SubProcess_Nested">
+         <sequenceFlow id="SequenceFlow_1" sourceRef="BoundaryEvent_2" targetRef="SubProcess_Nested">
             <extensionElements>
                <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000"/>
                <signavio:signavioMetaData metaKey="userstory" metaValue=""/>
             </extensionElements>
          </sequenceFlow>
-         <sequenceFlow id="sid-30649195-FA3E-46D8-A3E5-2B14F49D06A5" sourceRef="BoundaryEvent_1" targetRef="SubProcess_Nested">
+         <sequenceFlow id="SequenceFlow_2" sourceRef="BoundaryEvent_1" targetRef="SubProcess_Nested">
             <extensionElements>
                <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000"/>
                <signavio:signavioMetaData metaKey="userstory" metaValue=""/>
@@ -116,13 +116,13 @@
          <bpmndi:BPMNShape bpmnElement="BoundaryEvent_2" id="BoundaryEvent_2_gui">
             <omgdc:Bounds height="30.0" width="30.0" x="345.1741225345878" y="271.4948977199821"/>
          </bpmndi:BPMNShape>
-         <bpmndi:BPMNEdge bpmnElement="sid-B00D2E86-35D4-45B4-9EEE-7B51B4B58516" id="sid-B00D2E86-35D4-45B4-9EEE-7B51B4B58516_gui">
+         <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1" id="SequenceFlow_1_gui">
             <omgdi:waypoint x="360.1741225345878" y="301.4948977199821"/>
             <omgdi:waypoint x="360.1741225345878" y="317.0"/>
             <omgdi:waypoint x="296.0" y="317.0"/>
             <omgdi:waypoint x="296.0" y="285.98828125"/>
          </bpmndi:BPMNEdge>
-         <bpmndi:BPMNEdge bpmnElement="sid-30649195-FA3E-46D8-A3E5-2B14F49D06A5" id="sid-30649195-FA3E-46D8-A3E5-2B14F49D06A5_gui">
+         <bpmndi:BPMNEdge bpmnElement="SequenceFlow_2" id="SequenceFlow_2_gui">
             <omgdi:waypoint x="115.54696736055882" y="145.42211513745303"/>
             <omgdi:waypoint x="115.54696736055882" y="245.98828125"/>
             <omgdi:waypoint x="277.8697618589873" y="245.98828125"/>
