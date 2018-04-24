@@ -520,7 +520,10 @@ function expectWarnings(importResults, expectedWarnings) {
 
   var warnings = importResults.warnings;
 
-  expect(warnings).to.have.length(expectedWarnings.length, 'expected ' + expectedWarnings.length + ' warnings');
+  expect(warnings).to.have.length(
+    expectedWarnings.length,
+    'expected ' + expectedWarnings.length + ' warnings'
+  );
 
   warnings.forEach(function(warning, idx) {
     expect(warning.message).to.match(expectedWarnings[idx]);
