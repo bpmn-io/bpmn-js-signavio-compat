@@ -345,7 +345,7 @@ describe('signavio-compat', function() {
     beforeEach(bootstrapTest(collapsedDiagram));
 
 
-    it('should expand/collapse nested', inject(function(signavioBehavior) {
+    it('should expand/collapse nested', inject(function() {
 
       // when
       expand('SubProcess_1');
