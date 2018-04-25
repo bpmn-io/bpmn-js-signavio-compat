@@ -1,10 +1,14 @@
 # bpmn-js-signavio-compat
 
+[![Build Status](https://travis-ci.org/bpmn-io/bpmn-js-signavio-compat.svg?branch=master)](https://travis-ci.org/bpmn-io/bpmn-js-signavio-compat)
+
 Interoperate with [Signavio](http://signavio.com) exported diagrams.
+
 
 ## Features
 
 * Expand and collapse sub-processes, Signavio style
+
 
 ## Usage with bpmn-js
 
@@ -21,6 +25,7 @@ const modeler = new Modeler({
 ```
 
 Note that you need to use a transpiler (e.g. [babel](https://babeljs.io/)) when using the bpmn-js-signavio-compat module.
+
 
 ## License
 
