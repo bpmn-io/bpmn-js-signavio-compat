@@ -1,6 +1,6 @@
 {
   "name": "bpmn-js-signavio-compat",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A signavio compatibility layer for bpmn-js",
   "scripts": {
     "all": "run-s lint test",
