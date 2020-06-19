@@ -6,6 +6,10 @@ All notable changes to [bpmn-js-signavio-compat](https://github.com/bpmn-io/bpmn
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.2.2
+
+* `CHORE`: support `bpmn-js@7`
+
 ## 1.2.1
 
 * `CHORE`: support `bpmn-js@6`
