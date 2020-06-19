@@ -4,6 +4,7 @@ module.exports = function(karma) {
     frameworks: [ 'browserify', 'mocha', 'chai' ],
 
     files: [
+      'node_modules/promise-polyfill/dist/polyfill.js',
       'test/*Spec.js'
     ],
 
