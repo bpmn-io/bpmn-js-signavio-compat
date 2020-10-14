@@ -1,6 +1,6 @@
 # bpmn-js-signavio-compat
 
-[![Build Status](https://travis-ci.org/bpmn-io/bpmn-js-signavio-compat.svg?branch=master)](https://travis-ci.org/bpmn-io/bpmn-js-signavio-compat)
+[![Build Status](https://travis-ci.com/bpmn-io/bpmn-js-signavio-compat.svg?branch=master)](https://travis-ci.com/bpmn-io/bpmn-js-signavio-compat)
 
 Interoperate with [Signavio](http://signavio.com) exported diagrams.
 
