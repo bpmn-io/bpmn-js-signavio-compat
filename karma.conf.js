@@ -1,37 +1,37 @@
+// configures browsers to run test against
+// any of [ 'ChromeHeadless', 'Chrome', 'Firefox' ]
+var browsers = (process.env.TEST_BROWSERS || 'ChromeHeadless').split(',');
+
 module.exports = function(karma) {
   karma.set({
 
-    frameworks: [ 'browserify', 'mocha', 'chai' ],
+    frameworks: [ 'webpack', 'mocha', 'chai' ],
 
     files: [
-      'node_modules/promise-polyfill/dist/polyfill.js',
       'test/*Spec.js'
     ],
 
     preprocessors: {
-      'test/*Spec.js': [ 'browserify' ]
+      'test/*Spec.js': [ 'webpack' ]
     },
 
     reporters: [ 'progress' ],
 
-    browsers: [ 'PhantomJS' ],
+    browsers,
 
     singleRun: true,
     autoWatch: false,
 
-    // browserify configuration
-    browserify: {
-      transform: [
-        [ 'stringify', {
-          global: true,
-          extensions: [
-            '.bpmn',
-            '.css'
-          ]
-        } ],
-        [ 'babelify', { global: true } ]
-      ],
-      debug: true
+    webpack: {
+      mode: 'development',
+      module: {
+        rules: [
+          {
+            test: /(\.css|\.bpmn)$/,
+            use: 'raw-loader'
+          }
+        ]
+      }
     }
   });
 };
