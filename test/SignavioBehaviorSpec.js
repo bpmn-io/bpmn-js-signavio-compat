@@ -237,6 +237,7 @@ describe('signavio-compat', function() {
         expect(importResults.error).not.to.exist;
 
         expectWarnings(importResults, [
+
           // "Cannot read property 'x' of undefined"
           // bounds is undefined
           // undefined is not an object (evaluating 'bounds.x')
