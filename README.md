@@ -1,4 +1,5 @@
 > Capabilities this plug-in provides are built into `bpmn-js@9+`.
+> Read more about subprocess modeling in the [release blog post](https://bpmn.io/blog/posts/2022-bpmn-js-900-collapsed-subprocesses.html).
 
 # bpmn-js-signavio-compat
 
