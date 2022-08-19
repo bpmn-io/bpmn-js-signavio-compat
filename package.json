@@ -24,7 +24,7 @@
     "babel-preset-env": "^1.6.1",
     "bpmn-js": "^8.10.0",
     "chai": "^4.3.0",
-    "diagram-js": "^8.7.1",
+    "diagram-js": "^8.8.0",
     "eslint": "^7.21.0",
     "eslint-plugin-bpmn-io": "^0.12.0",
     "jsondiffpatch": "^0.1.8",
